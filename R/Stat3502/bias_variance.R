@@ -3,16 +3,23 @@ mu = 1.75
 sigma=0.2
 
 ## Bias for a fixed sample size
+# randomly select 100 students
 n = 100
 num_rep_sampling = 1000
 sample_mean_full = rep(0, num_rep_sampling)
 sample_mean_partial=rep(0, num_rep_sampling)
 sample_variance = rep(0, num_rep_sampling)
 
+# repeat 1000 times
 for( i in 1:num_rep_sampling)
 {
+  # random generation of 100 students' heights
   X = rnorm(n, mu, sigma)
+  
+  # calculate sample mean, different every time -> randomness
   sample_mean_full[i] = mean(X)
+  
+  # calculate mean of sample mean -> should be close to actual mean itself
   sample_mean_partial[i] = mean( X[1:10]) 
   sample_variance[i] = var( X )
 }
