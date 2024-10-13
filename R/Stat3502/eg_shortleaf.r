@@ -10,7 +10,8 @@ plot(x, y)
 newy=log(y)
 newx=log(x)
 
-plot(log(x), log(y))
+plot(newx, newy )
+
 
 myfit1=lm(y~x)
 myfit2=lm(newy~newx)
@@ -28,3 +29,23 @@ plot(newx,newy,xlab="log Diam",ylab="",cex.lab=1.2,main="
      After")
 title(ylab="log Vol", mgp=c(2,1,0), cex.lab=1.2)
 abline(a=ab2[1],b=ab2[2],col="red")
+
+qqnorm( myfit1$residuals )
+qqline( myfit1$residuals,col='red', lwd=2)
+
+qqnorm( myfit2$residuals )
+qqline( myfit2$residuals,col='red', lwd=2)
+
+
+shapiro.test( myfit1$residuals )
+
+shapiro.test( myfit2$residuals )
+
+datanew = data.frame( newx= log(10))
+
+predict( myfit2, newdata= datanew, interval='confidence')
+exp( predict( myfit2, newdata= datanew, interval='confidence') )
+
+predict( myfit2, newdata= datanew, interval='predict')
+exp(predict( myfit2, newdata= datanew, interval='predict') )
+
