@@ -1,4 +1,4 @@
-mydata=read.table("data/3502/iq.txt",header=T)
+mydata=read.table("~/STAT_3502/data/3502/iq.txt",header=T)
 # change the directory to your own
 
 str(mydata)
